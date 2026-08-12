@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biklip II - MTB Downhill Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="gameContainer">
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- HUD Overlay -->
+    <div id="hud">
+      <div class="hud-top">
+        <div class="brand">
+          <span class="logo-icon">🚵</span>
+          <span class="logo-text">BIKLIP <small>MTB DH</small></span>
+        </div>
+
+        <div class="stats-bar">
+          <div class="stat-box">
+            <span class="stat-label">VELOCIDAD</span>
+            <span class="stat-value" id="speedValue">0 <small>KM/H</small></span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">TIEMPO</span>
+            <span class="stat-value" id="timeValue">00:00.0</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">AIR TIME</span>
+            <span class="stat-value" id="airTimeValue">0.0 <small>s</small></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trail Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-label">PROGRESO DEL PISTA DH</div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+          <div class="progress-marker" id="progressMarker">🚵</div>
+        </div>
+      </div>
+
+      <!-- Live Notification Banner -->
+      <div id="noticeBanner" class="notice-banner hidden">
+        <span id="noticeText">¡BIG AIR DROP!</span>
+      </div>
+
+      <!-- Suspension Gauge & Stance -->
+      <div class="hud-bottom">
+        <div class="gauge-box">
+          <span class="gauge-title">SUSPENSIÓN F/R</span>
+          <div class="susp-bars">
+            <div class="susp-bar"><div class="susp-fill" id="suspFront"></div></div>
+            <div class="susp-bar"><div class="susp-fill" id="suspRear"></div></div>
+          </div>
+        </div>
+
+        <div class="controls-legend">
+          <div class="key-badge"><kbd>A</kbd>/<kbd>D</kbd> Lean Back / Fwd</div>
+          <div class="key-badge"><kbd>W</kbd> Pedaleo</div>
+          <div class="key-badge"><kbd>S</kbd> Frenos</div>
+          <div class="key-badge"><kbd>SPACE</kbd> Pump / Bunnyhop</div>
+          <div class="key-badge"><kbd>R</kbd> Reiniciar</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Start / Crash / Victory Overlay Modal -->
+    <div id="modalOverlay" class="modal-overlay">
+      <div class="modal-card">
+        <h1 id="modalTitle" class="gradient-text">MTB DOWNHILL</h1>
+        <p id="modalSubtitle">Pista de Descenso Progresiva en las Montañas</p>
+        
+        <div id="modalStats" class="modal-stats hidden">
+          <div class="m-stat">
+            <span class="m-val" id="mTime">00:00</span>
+            <span class="m-lbl">Tiempo Final</span>
+          </div>
+          <div class="m-stat">
+            <span class="m-val" id="mTopSpeed">0 km/h</span>
+            <span class="m-lbl">Vel. Máxima</span>
+          </div>
+          <div class="m-stat">
+            <span class="m-val" id="mMaxAir">0.0 s</span>
+            <span class="m-lbl">Mayor Salto</span>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button id="btnStart" class="btn-primary">INICIAR DESCENSO 🚴</button>
+        </div>
+        <p class="modal-tip">💡 Consejo: Usa <kbd>A</kbd> para inclinarte hacia atrás en los drops y evitar caídas de frente (endo).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+  <script src="js/bike.js"></script>
+  <script src="js/terrain.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
